@@ -1,0 +1,30 @@
+<div class="container">
+    <h2>Test data</h2>
+    <ul class="list-group">
+        <li *ngFor="let item of Recipes" class="list-group-item">
+            <label>{{item.id}} | {{item.title}}</label>
+            <button (click)="onTestDelete(item)" class="btn btn-primary">Delete</button>
+        </li>
+    </ul>
+    <br/>
+    <button class="btn btn-primary" (click)="onTestGet()">
+         <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>
+        Test GET</button>
+    <br/>
+    <form role="form">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input class="form-control" id="title" type="text" [(ngModel)]="newRecipe.title" />
+        </div>
+        <div class="form-group">
+            <label for="text">Description</label>
+            <input class="form-control" id="text" type="text" [(ngModel)]="newRecipe.text" />
+        </div>
+        <div class="form-group">
+            <label for="showed">Showed</label>
+            <input id="showed" type="checkbox" [(ngModel)]="newRecipe.showed" />
+        </div>
+        <button (click)="onTestPost()" class="btn btn-primary">Test Post</button>
+        <button (click)="onTestUpdate()" class="btn btn-primary">Update</button>
+    </form>
+</div>
