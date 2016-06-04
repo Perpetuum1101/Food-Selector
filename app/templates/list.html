@@ -1,0 +1,20 @@
+<div class="container">
+    <h2>Recipes list</h2>
+    <!--<pre>{{Recipes | json}}</pre>-->
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Showed</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of Recipes">
+                <td>{{item.title}}</td>
+                <td>{{item.showed}}</td>
+                <td><button (click)="onTestDelete(item)" class="btn btn-primary">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
