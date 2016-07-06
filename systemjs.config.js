@@ -4,7 +4,6 @@
     var map = {
         'app': 'app', // 'dist',
         '@angular': 'node_modules/@angular',
-        '@bootstrap': 'node_modules/ng2-bootstrap',
         'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
         'rxjs': 'node_modules/rxjs'
     }

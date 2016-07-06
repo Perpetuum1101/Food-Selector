@@ -1,18 +1,18 @@
 <div class="container">
+    <h2>Recipe Details</h2>
     <form role="form">
         <div class="form-group">
             <label for="title">Title:</label>
-            <input class="form-control" id="title" type="text" [(ngModel)]="newRecipe.title" />
+            <input class="form-control" id="title" type="text" [(ngModel)]="CurrentRecipe.title" />
         </div>
         <div class="form-group">
             <label for="text">Description</label>
-            <textarea class="form-control" id="text" [(ngModel)]="newRecipe.text"></textarea>
+            <textarea class="form-control" id="text" [(ngModel)]="CurrentRecipe.text"></textarea>
         </div>
         <div class="form-group">
             <label for="showed">Showed</label>
-            <input id="showed" type="checkbox" [(ngModel)]="newRecipe.showed" />
+            <input id="showed" type="checkbox" [(ngModel)]="CurrentRecipe.showed" />
         </div>
-        <button (click)="onTestPost()" class="btn btn-primary">Test Post</button>
-        <button (click)="onTestUpdate()" class="btn btn-primary">Update</button>
+        <button (click)="save()" class="btn btn-primary">{{ CurrentRecipe.id ? 'Update' : 'Save' }}</button>
     </form>
 </div>

@@ -1,12 +1,9 @@
-<h1>{{Title}}</h1>
-<tabset>
-    <tab heading="Static title">
-        <test-content></test-content>
-    </tab>
-    <tab heading="List">
-        <list-content></list-content>
-    </tab>
-    <tab heading="Details">
-        <details-content [Recipes]="Recipes"></details-content>
-    </tab>
-</tabset>
+<div class="container">
+    <h1>Food Selector</h1>
+    <nav>
+        <a [routerLink]="['RecipeList']">List</a>
+        <a [routerLink]="['RecipeSelector']">Selection</a>
+        <a [routerLink]="['Test']">Test</a>
+    </nav>
+    <router-outlet></router-outlet>
+</div>

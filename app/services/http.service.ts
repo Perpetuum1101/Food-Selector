@@ -4,7 +4,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-import {Recipe, RecipeDTO} from "../recipe";
+import {Recipe, RecipeDTO} from "../entities/recipe";
 
 import { Headers, RequestOptions } from '@angular/http';
 
@@ -74,27 +74,21 @@ export class HttpService {
         return this._http.get(url, options).map(res => this._mapFromDTOs(res.json()));
     }
 
-    addRecipe(newRecipe: Recipe) {
-        var url = this._buildUrl(null);
-        var options = this._buildOptions(true);
-
-        var dto = this._mapToDTO(newRecipe);
-        dto.date = new Date().toJSON().slice(0, 10);
-        var body = JSON.stringify(dto);
-        console.log(body);
-
-        return this._http.post(url, body, options).map(res => res.json());
-    }
-
-    updateRecipe(recipe: Recipe, id: number) {
-        var url = this._buildUrl(id);
+    saveOrUpdate(recipe: Recipe){
+        
+        var url = this._buildUrl(recipe.id);
         var options = this._buildOptions(true);
 
         var dto = this._mapToDTO(recipe);
         dto.date = new Date().toJSON().slice(0, 10);
         var body = JSON.stringify(dto);
 
-        return this._http.patch(url, body, options).map(res => res.json());
+        if(recipe.id){
+            return this._http.patch(url, body, options).map(res => res.json());
+        }
+        else{
+            return this._http.post(url, body, options).map(res => res.json());
+        }
     }
 
     deleteRecipe(id: number) {

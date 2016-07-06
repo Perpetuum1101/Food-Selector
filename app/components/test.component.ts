@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HttpService } from './services/http.service';
-import { Recipe } from './recipe';
+import { HttpService } from '../services/http.service';
+import { DataService } from '../services/data.service';
+import { Recipe } from '../entities/recipe';
+import { RouteParams, Router } from '@angular/router-deprecated';
 
 @Component({
     selector: 'test-content',
@@ -12,11 +14,11 @@ export class TestComponent implements OnInit {
     @Input()
     newRecipe: Recipe;
 
+    constructor(private _httpService: HttpService, private _dataService: DataService, private _router: Router) { }
+
     ngOnInit() {
         this.newRecipe = new Recipe();
     }
-
-    constructor(private _httpService: HttpService) { }
 
     getData(data: Recipe[]) {
         this.Recipes = data;
@@ -32,7 +34,7 @@ export class TestComponent implements OnInit {
     }
 
     onTestPost() {
-        this._httpService.addRecipe(this.newRecipe).subscribe(
+        this._httpService.saveOrUpdate(this.newRecipe).subscribe(
             data => console.log(data),
             error => console.log('error: ', error),
             () => console.log("Finished")
@@ -40,7 +42,7 @@ export class TestComponent implements OnInit {
     }
 
     onTestUpdate() {
-        this._httpService.updateRecipe(this.newRecipe, this.Recipes[0].id).subscribe(
+        this._httpService.saveOrUpdate(this.newRecipe).subscribe(
             data => console.log(data),
             error => console.log('error: ', error),
             () => console.log("Finished")
@@ -57,5 +59,4 @@ export class TestComponent implements OnInit {
                 this.Recipes.splice(index, 1);
             });
     }
-
 }

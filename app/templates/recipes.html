@@ -1,0 +1,7 @@
+<div class="container">
+    <h2>Recipes List</h2>
+    <button (click)="onSelect(item)" class="btn btn-lg btn-primary" style="display: inline;">
+        <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+    </button>
+    <list-content [listParams]="listModel"></list-content>
+</div>
