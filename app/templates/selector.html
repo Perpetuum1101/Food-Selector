@@ -1,5 +1,7 @@
 <div class="container">
     <h2>Recipe Details</h2>
-    <p>{{ CurrentRecipe.title }}</p>
-    <button (click)="save()" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-refresh"></span></button>
+    <div *ngIf="CurrentRecipe != null">
+        <p>{{ CurrentRecipe.title }}</p>
+        <button (click)="next()" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-refresh"></span></button>
+    </div>
 </div>

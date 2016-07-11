@@ -3,45 +3,36 @@ import { Recipe } from '../entities/recipe';
 
 @Injectable()
 export class DataService {
-    private _currentRecipe : Recipe;
-    private _recipes : Recipe[];
-    
-    constructor() { }
+    private _currentRecipe: Recipe;
+    private _recipes: Recipe[];
 
-    private _filter(showed: boolean){
-        return this._recipes.filter(x => x.showed == showed);
-    }
-    
-    SetRecipe(recipe: Recipe){
+    SetRecipe(recipe: Recipe) {
         this._currentRecipe = recipe;
         console.log('setting recipe', this._currentRecipe);
     }
 
-    SetRecipes(recipes: Recipe[]){
+    SetRecipes(recipes: Recipe[]) {
         this._recipes = recipes;
     }
-    
-    GetRecipe(){
+
+    GetRecipe() {
         console.log('retrieving recipe', this._currentRecipe);
         return this._currentRecipe;
     }
 
-    GetRecipes(){
+    GetRecipes() {
         return this._recipes;
     }
 
-    GetRecipeById(id: number){
+    GetRecipeById(id: number) {
+        if (this._recipes === null) {
+            return null;
+        }
         var res = this._recipes.filter(x => x.id == id);
-        if(res.length > 0){
+        if (res.length > 0) {
             return res[0];
         }
 
         return null;
-    }
-
-    GetRandomRecipe(){
-        var notShowed = this._filter(false);
-        var index = Math.floor(Math.random()*notShowed.length);
-        return notShowed[index];
     }
 }
