@@ -30,8 +30,14 @@ export class SelectorComponent implements OnInit {
         this.ResetRecipes = false;
     }
 
+    accept() {
+
+    }
+
     private _setCurrentRandomRecipe(recipes: Recipe[]) {
         var notShowed = recipes.filter(x => x.showed == false);
+        console.log('not showed:', notShowed.length);
+        
         if (notShowed.length == 0) {
             this.ResetRecipes = true;
             return;

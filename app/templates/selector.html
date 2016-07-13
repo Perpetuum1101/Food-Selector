@@ -1,7 +1,28 @@
 <div class="container">
-    <h2>Recipe Details</h2>
+    <h2>Select Recipe</h2>
     <div *ngIf="CurrentRecipe != null">
-        <p>{{ CurrentRecipe.title }}</p>
-        <button (click)="next()" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-refresh"></span></button>
+        <div style="margin-bottom: 2px; padding: 1px;" class="recipe-wrapper">
+            <h2 style="text-align: center;">{{ CurrentRecipe.title }}</h2>
+        </div>
+        <div style="font-size: 22px; margin-bottom: 2px; padding: 0px 0px 6px 5px;" class="recipe-wrapper">
+            <span class="label label-info">Carrots <span class="badge">x5</span></span>
+            <span class="label label-info">Honey <span class="badge">5tb</span></span>
+            <span class="label label-info">Chicken breast <span class="badge">900g</span></span>
+            <span class="label label-info">Black pepper <span class="badge">1pinch</span></span>
+            <span class="label label-info">Salt <span class="badge">1pinch</span></span>
+            <span class="label label-info">Red Hot Chilly peppers <span class="badge">1pinch</span></span>
+            <span class="label label-info">Lime <span class="badge">1/2</span></span>
+            <span class="label label-info">Sugar <span class="badge">1tb</span></span>
+        </div>
+        
+        <p class="recipe-wrapper text-justify" style="padding: 4px; font-size: 16px;">
+            {{ CurrentRecipe.text }}
+        </p>
+        <div class="row">
+            <div class="text-center">
+                <button (click)="next()" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-refresh"></span></button>
+                <button (click)="accept()" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-ok"></span></button>
+            </div>
+        </div>
     </div>
 </div>
