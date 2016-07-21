@@ -13,6 +13,6 @@
             <label for="showed">Showed</label>
             <input id="showed" type="checkbox" [(ngModel)]="CurrentRecipe.showed" />
         </div>
-        <button (click)="save()" class="btn btn-primary">{{ CurrentRecipe.id ? 'Update' : 'Save' }}</button>
+        <button (click)="save()" class="btn btn-default">{{ CurrentRecipe.id ? 'Update' : 'Save' }}</button>
     </form>
 </div>

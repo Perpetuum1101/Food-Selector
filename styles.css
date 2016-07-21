@@ -3,6 +3,10 @@
     -webkit-animation: spin2 1s infinite linear;
 }
 
+.badge-light {
+	background-color: #aaaaaa !important;
+}
+
 @keyframes spin {
     from { transform: scale(1) rotate(0deg); }
     to { transform: scale(1) rotate(360deg); }
