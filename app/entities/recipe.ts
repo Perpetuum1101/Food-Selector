@@ -1,4 +1,6 @@
-export class Recipe {
+import { IEntity } from './ientity';
+
+export class Recipe  implements IEntity {
     id: number;
     title: string;
     text: string;

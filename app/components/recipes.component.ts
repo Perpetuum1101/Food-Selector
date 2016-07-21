@@ -23,25 +23,44 @@ export class RecipesComponent implements OnInit {
         this.initList();
     }
 
-    initList() {
+    private _initListModel(data: Recipe[]) {
+        this.listModel = new ListModel();
+        this.listModel.headers = ['Id', 'Title', 'Showed', 'Actions'];
+        this.listModel.items = []
+        data.forEach(element => {
+            this.listModel.items.push([
+                new ListItem(element.id.toString()),
+                new ListItem(element.title),
+                new ListItem(element.showed ? 'ok' : 'remove', ColumnType.Icon)]);
+        });
+        this.listModel.deleteCallback = this.onDelete.bind(this);
+        this.listModel.editCallback = this.onSelect.bind(this);
+    }
+
+    private _getRecipes() {
         this._httpService.getAllRecipes().subscribe(
             data => {
                 this._dataService.SetRecipes(data);
-                this.listModel = new ListModel();
-                this.listModel.headers = ['Id', 'Title', 'Showed', 'Actions'];
-                this.listModel.items = []
-                data.forEach(element => {
-                    this.listModel.items.push([
-                        new ListItem(element.id.toString()),
-                        new ListItem(element.title),
-                        new ListItem(element.showed ? 'ok' : 'remove', ColumnType.Icon)]);
-                });
-                this.listModel.deleteCallback = this.onDelete.bind(this);
-                this.listModel.editCallback = this.onSelect.bind(this);
+                this._initListModel(data);
             },
             error => console.log('error: ', error),
             () => console.log("Finished")
         );
+    }
+
+    private _refreshList(){
+        this.listModel = null;
+        this._getRecipes();
+    }
+
+    initList() {
+        var recipes = this._dataService.GetRecipes();
+        if (recipes == null) {
+            this._getRecipes();
+        }
+        else {
+            this._initListModel(recipes);
+        }
     }
 
     onSelect(id: number) {
@@ -52,12 +71,12 @@ export class RecipesComponent implements OnInit {
 
     onDelete(id: number) {
         this.listModel = null;
-        this._httpService.deleteRecipe(id).subscribe(
+        this._httpService.remove('recipes', id).subscribe(
             data => console.log(data),
             error => console.log('error: ', error),
             () => {
                 console.log("Finished");
-                this.initList();
+                this._refreshList();
             });
     }
 }

@@ -34,8 +34,7 @@ export class DetailComponent implements OnInit {
     }
 
     save() {
-        console.log("save");
-        this._httpService.saveOrUpdate(this.CurrentRecipe).subscribe(
+        this._httpService.saveOrUpdateRecipe(this.CurrentRecipe).subscribe(
             data => {
                 this._noErrors = true;
                 console.log(data);

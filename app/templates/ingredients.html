@@ -1,0 +1,37 @@
+<div class="container">
+    <h2>Ingredients List</h2>
+    <button (click)="onSelect()" class="btn btn-lg btn-default" style="display: inline;">
+        <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+    </button>
+    <list-content [listParams]="listModel"></list-content>
+</div>
+
+<button id="open-ingredient-modal" [hidden]="true" data-toggle="modal" data-target="#ingredients-modal">Open Modal</button>
+
+<div class="modal fade" id="ingredients-modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Ingredient Details</h4>
+            </div>
+            <div class="modal-body" *ngIf="CurrentIngredient != null">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input [(ngModel)]="CurrentIngredient.name" type="text" class="form-control" name="name">
+                    </div>
+                    <div class="modal-footer">
+                        <button (click)="save()" class="btn btn-default">
+                            <span *ngIf="CurrentIngredient.id == null" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                            <span *ngIf="CurrentIngredient.id != null" class="glyphicon glyphicon-check" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default" id="close-ingredient-modal" data-dismiss="modal">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
