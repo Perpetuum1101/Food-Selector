@@ -21,6 +21,13 @@
     background: #e6f6f8;
 	border-radius: 8px;
 }
+
+.ng-valid[required] {
+    border-left: 5px solid #42A948 !important; /* green */
+}
+.ng-invalid {
+    border-left: 5px solid #a94442 !important; /* red */
+}
 /*
 Copyright 2016 Google Inc. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that

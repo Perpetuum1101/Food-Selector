@@ -1,18 +1,28 @@
 <div class="container">
-    <h2>Recipe Details</h2>
-    <form role="form">
+    <h2>{{CurrentRecipe.id ? 'Edit Recipe' : 'New Recipe'}}</h2>
+    <form role="form" #f="ngForm" (ngSubmit)="save()"  >
         <div class="form-group">
             <label for="title">Title:</label>
-            <input class="form-control" id="title" type="text" [(ngModel)]="CurrentRecipe.title" />
+            <input class="form-control" name="title" type="text" [(ngModel)]="CurrentRecipe.title" required />
         </div>
         <div class="form-group">
             <label for="text">Description</label>
-            <textarea class="form-control" style="height: 200px;" id="text" [(ngModel)]="CurrentRecipe.text"></textarea>
+            <textarea class="form-control" 
+                      name="description" 
+                      style="height: 200px;" 
+                      required [(ngModel)]="CurrentRecipe.text"></textarea>
         </div>
         <div class="form-group">
             <label for="showed">Showed</label>
-            <input id="showed" type="checkbox" [(ngModel)]="CurrentRecipe.showed" />
+            <input name="showed" type="checkbox" [(ngModel)]="CurrentRecipe.showed" />
         </div>
-        <button (click)="save()" class="btn btn-default">{{ CurrentRecipe.id ? 'Update' : 'Save' }}</button>
+        <div class="pull-right">
+            <button (click)="back()" class="btn btn-default btn-lg">
+                <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+            </button>
+            <button type="submit" class="btn btn-default btn-lg" [disabled]="f.pristine || !f.valid">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            </button>
+        </div>  
     </form>
 </div>

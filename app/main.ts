@@ -6,4 +6,9 @@ import { HTTP_PROVIDERS } from "@angular/http"
 
 import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 
-bootstrap(AppComponent, [HTTP_PROVIDERS, ROUTER_PROVIDERS]);
+import {disableDeprecatedForms, provideForms} from '@angular/forms'
+
+bootstrap(AppComponent, [disableDeprecatedForms(),
+                         provideForms(),
+                         HTTP_PROVIDERS, 
+                         ROUTER_PROVIDERS]);

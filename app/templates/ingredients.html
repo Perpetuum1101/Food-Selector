@@ -13,18 +13,17 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Ingredient Details</h4>
+                <h4 class="modal-title">{{CurrentIngredient.id ? 'Update Ingredient' : 'New Ingredient' }}</h4>
             </div>
             <div class="modal-body" *ngIf="CurrentIngredient != null">
-                <form role="form">
+                <form role="form" #f="ngForm" (ngSubmit)="save()">
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input [(ngModel)]="CurrentIngredient.name" type="text" class="form-control" name="name">
+                        <input [(ngModel)]="CurrentIngredient.name" type="text" class="form-control" name="name" required>
                     </div>
                     <div class="modal-footer">
-                        <button (click)="save()" class="btn btn-default">
-                            <span *ngIf="CurrentIngredient.id == null" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                            <span *ngIf="CurrentIngredient.id != null" class="glyphicon glyphicon-check" aria-hidden="true"></span>
+                        <button type="submit" class="btn btn-default" [disabled]="f.pristine || !f.valid">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                         </button>
                         <button type="button" class="btn btn-default" id="close-ingredient-modal" data-dismiss="modal">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>

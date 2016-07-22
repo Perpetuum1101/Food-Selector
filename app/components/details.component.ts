@@ -42,10 +42,18 @@ export class DetailComponent implements OnInit {
             error => console.log('error: ', error),
             () => {
                 console.log("finished!");
-                if(this._noErrors){
+                if (this._noErrors) {
                     this._router.navigate(['RecipeList']);
                 }
             }
         );
+    }
+
+    back() {
+        this._router.navigate(['RecipeList']);
+    }
+
+    onSubmit(form: any): void {
+        console.log('you submitted value:', form);
     }
 }
