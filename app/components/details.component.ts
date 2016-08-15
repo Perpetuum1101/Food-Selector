@@ -3,6 +3,7 @@ import { HttpService } from '../services/http.service';
 import { DataService } from '../services/data.service';
 import { Recipe } from '../entities/recipe';
 import { RouteParams, Router } from '@angular/router-deprecated';
+import { Ingredient, RecipeIngredient } from '../entities/ingredient';
 
 @Component({
     templateUrl: './app/templates/details.html'
@@ -11,6 +12,7 @@ import { RouteParams, Router } from '@angular/router-deprecated';
 export class DetailComponent implements OnInit {
 
     public CurrentRecipe: Recipe;
+    public Ingredients: Recipe
     private _isNewRecipe: boolean;
     private _noErrors: boolean;
 
@@ -22,6 +24,17 @@ export class DetailComponent implements OnInit {
 
     ngOnInit() {
         var rec = this._dataService.GetRecipe();
+        var recIngredients = this._dataService.GetRecipesIngredients(rec.id);
+        if (recIngredients == null) {
+            this._httpService.getAllRecipesIngredients().subscribe(
+                data => {
+                    this._dataService.SetRecipesIngredients(data);
+                },
+                error => console.log('error: ', error),
+                () => console.log("finished!")
+            );
+        }
+
         console.log('recipe', rec);
         if (rec) {
             this.CurrentRecipe = rec;

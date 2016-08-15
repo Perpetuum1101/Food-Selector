@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from '../services/http.service';
 import { DataService } from '../services/data.service';
+import { InitService } from '../services/init.service';
 import {RecipesComponent} from './recipes.component';
 import {IngredientsComponent} from './ingredients.component'
 import {DetailComponent} from './details.component';
@@ -12,7 +13,7 @@ import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
     selector: 'my-app',
     templateUrl: './app/templates/app.html',
     directives: [ROUTER_DIRECTIVES],
-    providers: [HttpService, DataService]
+    providers: [HttpService, DataService, InitService]
 })
 
 @RouteConfig([

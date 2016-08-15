@@ -3,6 +3,7 @@ import { RouteParams, Router } from '@angular/router-deprecated';
 import { Ingredient } from '../entities/ingredient';
 import { HttpService } from '../services/http.service';
 import { DataService } from '../services/data.service';
+import { InitService } from '../services/init.service';
 import {ListComponent} from './list.component';
 import {ListModel, ListItem, ColumnType} from '../entities/listModel';
 
@@ -18,6 +19,7 @@ export class IngredientsComponent implements OnInit {
     constructor(
         private _httpService: HttpService,
         private _dataService: DataService,
+        private _initService: InitService,
         private _router: Router) { }
 
     ngOnInit() {
@@ -25,28 +27,23 @@ export class IngredientsComponent implements OnInit {
         this.initList();
     }
 
-    private _initListModel(data: Ingredient[]) {
+    private _initListModel() {
+        var ingredients = this._dataService.GetIngredients();
         this.listModel = new ListModel();
         this.listModel.headers = ['Id', 'Name'];
         this.listModel.items = []
-        data.forEach(element => {
+        ingredients.forEach(element => {
             this.listModel.items.push([
                 new ListItem(element.id.toString()),
                 new ListItem(element.name)]);
         });
+
         this.listModel.deleteCallback = this.onDelete.bind(this);
         this.listModel.editCallback = this.onSelect.bind(this);
     }
 
     private _getIngredients() {
-        this._httpService.getAllIngredients().subscribe(
-            data => {
-                this._dataService.SetIngridients(data);
-                this._initListModel(data);
-            },
-            error => console.log('error: ', error),
-            () => console.log("Finished")
-        );
+        this._initService.initRecipes(this._initListModel.bind(this));
     }
 
     private _refreshList() {
@@ -57,10 +54,10 @@ export class IngredientsComponent implements OnInit {
     initList() {
         var ingredients = this._dataService.GetIngredients();
         if (ingredients == null) {
-            this._getIngredients();
+            this._initService.initRecipes(this._initListModel.bind(this));
         }
         else {
-            this._initListModel(ingredients);
+            this._initListModel();
         }
     }
 

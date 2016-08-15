@@ -1,18 +1,13 @@
 <div class="container">
     <h2>Select Recipe</h2>
-    <div *ngIf="CurrentRecipe != null">
+    <div *ngIf="DataInitialized">
         <div style="margin-bottom: 2px; padding: 1px;" class="well">
             <h2 style="text-align: center;">{{ CurrentRecipe.title }}</h2>
         </div>
-        <div style="font-size: 22px; margin-bottom: 2px; padding: 0px 0px 6px 5px;" class="well">
-            <span class="label label-default">Carrots <span class="badge badge-light">x5</span></span>
-            <span class="label label-default">Honey <span class="badge badge-light">5tb</span></span>
-            <span class="label label-default">Chicken breast <span class="badge badge-light">900g</span></span>
-            <span class="label label-default">Black pepper <span class="badge badge-light">1pinch</span></span>
-            <span class="label label-default">Salt <span class="badge badge-light">1pinch</span></span>
-            <span class="label label-default">Red Hot Chilly peppers <span class="badge badge-light">1pinch</span></span>
-            <span class="label label-default">Lime <span class="badge badge-light">1/2</span></span>
-            <span class="label label-default">Sugar <span class="badge badge-light">1tb</span></span>
+        <div *ngIf="Ingredients != null" style="font-size: 22px; margin-bottom: 2px; padding: 0px 0px 6px 5px;" class="well">
+            <template  ngFor let-item [ngForOf]="Ingredients">
+                <span class="label label-default">{{item.name}} <span class="badge badge-light">{{item.amount}}</span></span>
+            </template>
         </div>
 
         <p class="well text-justify" style="padding: 4px; font-size: 16px;">

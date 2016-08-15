@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 
 import {IEntity} from "../entities/ientity";
 import {Recipe, RecipeDTO} from "../entities/recipe";
-import {Ingredient, IngredientDTO} from "../entities/ingredient";
+import {Ingredient, IngredientDTO, RecipeIngredient, RecipeIngredientDTO} from "../entities/ingredient";
 
 import { Headers, RequestOptions } from '@angular/http';
 
@@ -47,7 +47,7 @@ export class HttpService {
         return i;
     }
 
-    private _mapFromIngredienstDTOs(ings: IngredientDTO[]) {
+    private _mapFromIngredientsDTOs(ings: IngredientDTO[]) {
         var ingredients: Ingredient[] = [];
 
         ings.forEach(element => {
@@ -56,6 +56,27 @@ export class HttpService {
         });
 
         return ingredients;
+    }
+
+    private _mapFromRecipeIngridientsDTO(recIng: RecipeIngredientDTO){
+        var ri = new RecipeIngredient();
+        ri.amount = recIng.amount;
+        ri.id = +recIng.id.split(" ")[1];
+        ri.ingredientId = +recIng.ingridient[0].id.split(" ")[1];
+        ri.recipeId = +recIng.recipe[0].id.split(" ")[1]; 
+
+        return ri;
+    }
+
+    private _mapFromRecipeIngridientsDTOs(recIngs: RecipeIngredientDTO[]) {
+         var result: RecipeIngredient[] = [];
+
+        recIngs.forEach(element => {
+            var r = this._mapFromRecipeIngridientsDTO(element);
+            result.push(r);
+        });
+
+        return result;
     }
 
     private _mapFromRecipeDTO(rec: RecipeDTO) {
@@ -142,6 +163,13 @@ export class HttpService {
         var url = this._buildUrl("ingredients", null);
         var options = this._buildOptions(false);
 
-        return this._http.get(url, options).map(res => this._mapFromIngredienstDTOs(res.json()));
+        return this._http.get(url, options).map(res => this._mapFromIngredientsDTOs(res.json()));
     }
+
+    getAllRecipesIngredients(): Observable<RecipeIngredient[]>{
+        var url = this._buildUrl("recipes_ingredients", null);
+        var options = this._buildOptions(false);
+
+        return this._http.get(url, options).map(res => this._mapFromRecipeIngridientsDTOs(res.json()));
+    } 
 }
