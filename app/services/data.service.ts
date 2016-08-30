@@ -56,12 +56,17 @@ export class DataService {
         return this._filterById(this._ingredients, id) as Ingredient;
     }
 
-    GetRecipesIngredients(recipeId: number) {
+    GetRecipeIngredients(recipeId: number) {
         if (this._recipesIngredients == null) {
             return null;
         }
 
-        return this._recipesIngredients.filter(x => x.recipeId == recipeId)
+        var result = this._recipesIngredients.filter(x => x.recipeId == recipeId)
+        result.forEach(element => {
+            element.name = element.name = this.GetIngredientById(element.ingredientId).name;
+        });
+
+        return result;
     }
 
     private _filterById(entities: IEntity[], id: number) {

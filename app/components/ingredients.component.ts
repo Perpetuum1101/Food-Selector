@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouteParams, Router } from '@angular/router-deprecated';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Ingredient } from '../entities/ingredient';
 import { HttpService } from '../services/http.service';
 import { DataService } from '../services/data.service';

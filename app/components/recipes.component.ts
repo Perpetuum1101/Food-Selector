@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouteParams, Router } from '@angular/router-deprecated';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe } from '../entities/recipe';
 import { HttpService } from '../services/http.service';
 import { DataService } from '../services/data.service';
@@ -58,7 +58,7 @@ export class RecipesComponent implements OnInit {
     onSelect(id: number) {
         var recipe = this._dataService.GetRecipeById(id);
         this._dataService.SetRecipe(recipe);
-        this._router.navigate(['RecipeDetails']);
+        this._router.navigate(['/details']);
     }
 
     onDelete(id: number) {
