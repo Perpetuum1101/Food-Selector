@@ -1,0 +1,29 @@
+<div class="container">
+    <h2>{{CurrentRecipe.id ? 'Edit Recipe' : 'New Recipe'}}</h2>
+    <form role="form" #f="ngForm" (ngSubmit)="save()">
+        <l-input label="Title" name="title" [(model)]="CurrentRecipe.title" [required]="true"></l-input>
+        <div class="form-group">
+            <label for="text">Description:</label>
+            <textarea class="form-control" name="description" style="height: 200px;" required [(ngModel)]="CurrentRecipe.text"></textarea>
+        </div>
+        <l-checkbox label="Showed" name="showed" [(model)]="CurrentRecipe.showed"></l-checkbox>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Ingredients</h4>
+            </div>
+            <div class="panel-body">
+                <div class="form-group" *ngFor="let ingredient of Ingredients; trackBy:trackIngredients; let i = index">
+                    <recipe-ngredient [(Ingredient)]="Ingredients[i]"></recipe-ngredient>
+                    <div class="col-xs-2" style="padding-top: 20px;">
+                        <l-button *ngIf="i >= 1" (click)="remove(i)" icon="remove"></l-button>
+                        <l-button *ngIf="i == (Ingredients.length-1)" (click)="add()" icon="plus"></l-button>
+                    </div>
+                </div>
+            </div>
+            <div class="pull-right" style="margin-top: 5px;">
+                <l-button (click)="back()" icon="list"></l-button>
+                <l-button type="submit" [disabled]="f.pristine || !f.valid" icon="ok"></l-button>
+            </div>
+        </div>
+    </form>
+</div>

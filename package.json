@@ -1,38 +1,38 @@
 {
-  "name": "angular2-quickstart",
-  "version": "1.0.0",
+  "name": "tst03",
+  "version": "0.0.0",
+  "license": "MIT",
+  "angular-cli": {},
   "scripts": {
-    "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
-    "lite": "lite-server -c \"bs-config.json\"",
-    "postinstall": "typings install",
-    "tsc": "tsc",
-    "tsc:w": "tsc -w",
-    "typings": "typings"
+    "ng": "ng",
+    "start": "ng serve",
+    "lint": "tslint \"src/**/*.ts\" --project src/tsconfig.json --type-check && tslint \"e2e/**/*.ts\" --project e2e/tsconfig.json --type-check",
+    "pree2e": "webdriver-manager update --standalone false --gecko false"
   },
-  "license": "ISC",
+  "private": true,
   "dependencies": {
-    "@angular/common": "2.0.0-rc.5",
-    "@angular/compiler": "2.0.0-rc.5",
-    "@angular/compiler-cli": "0.5.0",
-    "@angular/core": "2.0.0-rc.5",
-    "@angular/forms": "0.3.0",
-    "@angular/http": "2.0.0-rc.5",
-    "@angular/platform-browser": "2.0.0-rc.5",
-    "@angular/platform-browser-dynamic": "2.0.0-rc.5",
-    "@angular/router": "3.0.0-rc.1",
-    "@angular/upgrade": "2.0.0-rc.5",
-    "core-js": "^2.4.0",
-    "reflect-metadata": "^0.1.3",
-    "rxjs": "5.0.0-beta.6",
-    "systemjs": "0.19.27",
-    "zone.js": "^0.6.12",
-    "angular2-in-memory-web-api": "0.0.17",
-    "bootstrap": "^3.3.6"
+    "@angular/common": "^2.3.1",
+    "@angular/compiler": "^2.3.1",
+    "@angular/core": "^2.3.1",
+    "@angular/forms": "^2.3.1",
+    "@angular/http": "^2.3.1",
+    "@angular/platform-browser": "^2.3.1",
+    "@angular/platform-browser-dynamic": "^2.3.1",
+    "@angular/router": "^3.3.1",
+    "core-js": "^2.4.1",
+    "rxjs": "^5.0.1",
+    "ts-helpers": "^1.1.1",
+    "zone.js": "^0.7.2"
   },
   "devDependencies": {
-    "concurrently": "^2.2.0",
-    "lite-server": "^2.2.2",
-    "typescript": "^1.8.10",
-    "typings":"^1.3.2"
+    "@angular/compiler-cli": "^2.3.1",
+    "@types/jasmine": "2.5.38",
+    "@types/node": "^6.0.42",
+    "angular-cli": "1.0.0-beta.26",
+    "codelyzer": "~2.0.0-beta.1",
+    "extract-text-webpack-plugin": "^2.0.0-rc.0",
+    "ts-node": "1.2.1",
+    "tslint": "^4.3.0",
+    "typescript": "~2.0.3"
   }
 }

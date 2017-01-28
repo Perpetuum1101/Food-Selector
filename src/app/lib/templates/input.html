@@ -1,0 +1,4 @@
+<div class="form-group">
+    <label [attr.for]="name">{{label}}:</label>
+    <input class="form-control" name="{{name}}" id="{{name}}" type="text" [(ngModel)]="model" (ngModelChange)="onChange($event)" [required]="required" />
+</div>
