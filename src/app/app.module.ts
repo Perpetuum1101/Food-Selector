@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { routing } from './app.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpModule }    from '@angular/http';
+import {Ng2AutoCompleteModule} from 'ng2-auto-complete';
 
 import { ListComponent } from './components/list.component';
 import { RecipeIngredientComponent } from './components/recipe-ingredient.component' 
@@ -22,7 +23,7 @@ import {InputComponent} from './lib/components/input.component';
 import {CheckboxComponent} from './lib/components/checkbox.component';
 
 @NgModule({
-    imports: [BrowserModule, FormsModule, HttpModule, routing],
+    imports: [BrowserModule, FormsModule, HttpModule, routing, Ng2AutoCompleteModule],
     declarations: [
         AppComponent, 
         ListComponent,
