@@ -1,4 +1,8 @@
 typings
+dist
+.firebaserc
+database.rules.json
+firebase.json
 app/**/*.js
 app/**/*.map
 node_modules
