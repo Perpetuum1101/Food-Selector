@@ -1,4 +1,14 @@
 <div class="form-group">
+    <label [attr.for]="name">{{label}}:</label>
+    <input class="form-control" name="{{name}}" id="{{name}}" type="text" [(ngModel)]="model" (ngModelChange)="onChange($event)" [required]="required" />
+</div>
+
+<div class="form-group">
+    <input auto-complete 
+           [(ngModel)]="currentIngredient" 
+           [source]="ingredients"
+           class="form-control"
+           display-property-name="name" />
     <label [attr.for]="name">{{label}}</label>
     <input type="text" />
 </div>
